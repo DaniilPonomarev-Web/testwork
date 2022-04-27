@@ -35,11 +35,22 @@ require_once "model/GetDirect.php";
         <tbody class="table-striped" >
           <?php foreach ($directorynumbers as $directs) { ?>
             <tr data-item="<?=$directs['id']?>" id="del_id_<?=$directs['id']?>">
-              <td><?=$directs['FIO']?></td>
-              <td> <a href="tel:<?=$directs['telephone']?>"><?=$directs['telephone']?></a></td>
-              <td><?=$directs['who']?></td>
+              <td>
+                <p id="FIO_<?=$directs['id']?>"><?=$directs['FIO']?></p>
+                <input style="display:none" id="FIO_r_<?=$directs['id']?>" type="text" value="<?=$directs['FIO']?>">
+              </td>
+         
+              <td>
+                <a id="tel_<?=$directs['id']?>" href="tel:<?=$directs['telephone']?>"><?=$directs['telephone']?></a>
+                <input style="display:none"  id="tel_r_<?=$directs['id']?>" type="text" value="<?=$directs['telephone']?>">
+              </td>
+              <td>
+                <p id="who_<?=$directs['id']?>"><?=$directs['who']?></p>
+                <input style="display:none"  id="who_r_<?=$directs['id']?>" type="text" value="<?=$directs['who']?>">
+              </td>
+                
               <td> 
-                <a href="#" onclick="update(<?=$directs['id']?>)"> Редактировать </a>
+                <a href="#" onclick="update(<?=$directs['id']?>)" id="update_<?=$directs['id']?>"> Редактировать </a>
                 <button class="btn_del_direct" onclick="del_direct(<?=$directs['id']?>);">Удалить</a>
               </td>
             </tr>
@@ -70,21 +81,59 @@ require_once "model/GetDirect.php";
   </body>
 
   <script type="text/javascript">
-    /*добавление */
-    $( document ).ready(function() {
-      $('#button_add').on('click', function() {
-          $('.modal-wrapper').toggleClass('open');
-          return false;
-      });
-      $('.head').on('click', function (){
-          $('.modal-wrapper').removeClass('open');
-      })   
+/*добавление */
+  $( document ).ready(function() {
+    $('#button_add').on('click', function() {
+        $('.modal-wrapper').toggleClass('open');
+        return false;
     });
-    /*обновление */
+    $('.head').on('click', function (){
+        $('.modal-wrapper').removeClass('open');
+    })   
+  });
 
-function update(id) {
 
-}
+/*обновление */
+  var clicks = 0;
+  function update(id) {
+
+    clicks++;
+    console.log(clicks);
+    $('#update_'+id).text("Сохранить");
+    $('#FIO_'+id).css('display', 'none');
+    $('#tel_'+id).css('display', 'none');
+    $("#who_"+id).css('display', 'none');
+    $('#FIO_r_'+id).css('display', 'block');
+    $('#tel_r_'+id).css('display', 'block');
+    $("#who_r_"+id).css('display', 'block');
+
+    if (clicks === 2) {
+      $('#FIO_'+id).text($('#FIO_r_'+id).val());
+      $('#tel_'+id).text($('#FIO_r_'+id).val());
+      $("#who_"+id).text($('#FIO_r_'+id).val());
+
+
+      $('#update_'+id).text("Редактировать");
+      $('#FIO_'+id).css('display', 'block');
+      $('#tel_'+id).css('display', 'block');
+      $("#who_"+id).css('display', 'block');
+      $('#FIO_r_'+id).css('display', 'none');
+      $('#tel_r_'+id).css('display', 'none');
+      $("#who_r_"+id).css('display', 'none');
+      jQuery.ajax({
+        type:"post",
+        url: "model/updateedirect.php",
+        data: { fio: "fio_"+id, telephone: "tel_"+id, who: "who_"+id },
+        success: function(response){
+            
+        },
+        error: function(response) { 
+            alert('ошибка редактирования данных')
+        }
+    });
+      clicks = 0;
+    }
+  }
 /*удаление */
 function del_direct(id) {       
     jQuery.ajax({
