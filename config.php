@@ -1,6 +1,6 @@
 <?php
 $config = array(
-    'title' => 'Тестоыое задание',    
+    'title' => 'Тестовое задание',    
 ); 
 require_once "db/db.php";
 ?>
