@@ -1,3 +1,21 @@
+p {
+  font-size: 1.3rem;
+}
+a {
+  font-size: 1.3rem;
+  color: darkblue;
+}
+.h1, h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+input {
+  text-align: center;
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 6px;
+  margin: 5px auto;
+}
 .MainContainer {
     max-width: 1800px;
     display: flex;
@@ -6,6 +24,7 @@
     align-items: center;
     padding: 10% 0;
     display: flex;
+    overflow: hidden;
 }
 .MainContainer_table {
     text-align: center;
@@ -30,6 +49,18 @@
   .modal-wrapper.open {
     opacity: 1;
     visibility: visible;
+  }
+  .modal_for_add {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+  }
+  .form_modal_window {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    align-self: center;
   }
   .modal {
     width: 500px;
@@ -60,3 +91,97 @@
   .btn_del_direct {
     cursor: pointer;
   }
+  .head_X {
+    cursor: pointer;
+    position: absolute;
+    right: 1%;
+  }
+  .buttons_red {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .table td, .table th {
+    vertical-align: middle !important;
+  }
+  #btn_add_direction {
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin: 5px 0;
+    min-width: 100%;
+    background-color: #03ac97;
+    color: #fff;
+    transition: all 0.25s ease-in-out;
+    background-image: linear-gradient(211deg, #35e2cd, rgba(70, 216, 199, 0) 34%, rgba(67, 211, 194, 0.16) 58%, #339689 85%, #1db6a3);
+  }
+  .btn_red_direct {
+    width: fit-content;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin: 5px 0;
+    min-width: 51%;
+    background-color: #03ac97;
+    color: #fff;
+    transition: all 0.25s ease-in-out;
+    background-image: linear-gradient(211deg, #35e2cd, rgba(70, 216, 199, 0) 34%, rgba(67, 211, 194, 0.16) 58%, #339689 85%, #1db6a3);
+  }
+  .btn_red_direct:hover {
+    background-color: antiquewhite;
+    box-shadow: 0 0 18px 0 rgb(153 156 169 / 30%);
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    background-image: linear-gradient(211deg, #35e2cd, rgba(70, 216, 199, 0) 34%, rgba(67, 211, 194, 0.16) 58%, #339689 85%, #1db6a3);
+  }
+  .btn_del_direct {
+    width: fit-content;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    border-radius: 15px;
+    min-width: 51%;
+    margin: 5px 0;
+    background-color: red;
+    color: #fff;
+    transition: all 0.25s ease-in-out;
+    background-image: linear-gradient(211deg, #35e2cd, rgba(70, 216, 199, 0) 34%, rgba(67, 211, 194, 0.16) 58%, #339689 85%, #1db6a3);
+  }
+  .btn_del_direct:hover {
+    background-color: rgb(147, 59, 59);
+    box-shadow: 0 0 18px 0 rgb(153 156 169 / 30%);
+    color: #fff;
+    background-image: linear-gradient(211deg, #517f8d, rgba(70, 216, 199, 0) 34%, rgba(67, 211, 194, 0.16) 58%, #339689 85%, #1db6a3);
+  }
+
+
+  @media screen and (max-width:768px) {
+    thead {
+      font-size: 11px;
+    }
+    p {
+      font-size: 1rem;
+    }
+    a {
+      font-size: 1rem;
+    }
+    .btn_red_direct {
+      font-size: 0.8rem;
+      padding: 5px 5px;
+      border-radius: 15px;
+      margin: 2px 0;
+      min-width: 100%;
+    }
+    .btn_del_direct {
+      font-size: 0.8rem;
+      padding: 5px 5px;
+      border-radius: 15px;
+      margin: 2px 0;
+      min-width: 100%;
+    }
+    button#button_add {
+      margin-top: 3%;
+    }
+  }
+     

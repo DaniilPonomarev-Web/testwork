@@ -14,13 +14,17 @@ require_once "model/GetDirect.php";
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="css/MainPage.css">
 
+
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js" integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script src="ajax.js"></script>
   </head>
   <body>
     <div class="MainContainer">
       <h1 class="MainContainer_h1">
-        
+        Тестовое задание "Разработать телефонный справочник"
       </h1>
       
       <table class="MainContainer_table table table-striped" id="table_body">
@@ -49,8 +53,8 @@ require_once "model/GetDirect.php";
                 <input style="display:none"  id="who_r_<?=$directs['id']?>" type="text" value="<?=$directs['who']?>">
               </td>
                 
-              <td> 
-                <a href="#" onclick="update(<?=$directs['id']?>)" id="update_<?=$directs['id']?>"> Редактировать </a>
+              <td class="buttons_red"> 
+                <a class="btn_red_direct" href="#" onclick="update(<?=$directs['id']?>)" id="update_<?=$directs['id']?>"> Редактировать </a>
                 <button class="btn_del_direct" onclick="del_direct(<?=$directs['id']?>);">Удалить</a>
               </td>
             </tr>
@@ -59,38 +63,37 @@ require_once "model/GetDirect.php";
       </table>
       <button id="button_add" type="button" data-product-id="144" title="В корзину" class="btn w-button">Добавить</button>
     </div>
-
-
-    <!-- add modal form-->
-      <div class="modal-wrapper">
-        <div class="modal">
-          <div class="head">X</div>
-          <div class="content">
-              <div class="good-job">
-                <p>Добавьте данные в справочник</p>
-                <form class="form_modal_window" method="post" id="form_add_direct" action="">
-                  <input type="text" name="fio" placeholder="ФИО" required>
-                  <input type="phone" name="telephone" placeholder="Ваш телефон" required>
-                  <input type="text" name="who" placeholder="Кем приходится" required>
-                  <button id="btn_add_direction"> Отправить </button>
-                </form>
-              </div>
-          </div>
+    <div class="modal-wrapper">
+      <div class="modal">
+        <div class="head_X">X</div>
+        <div class="content">
+            <div class="modal_for_add">
+              <p>Добавьте данные в справочник</p>
+              <form class="form_modal_window" method="post" id="form_add_direct" action="">
+                <input id="fio" type="text" name="fio" placeholder="ФИО" required>
+                <input id="telephone" type="phone" name="telephone" placeholder="Ваш телефон" required>
+                <input id="who" type="text" name="who" placeholder="Кем приходится" required>
+                <button id="btn_add_direction" class="btn btn-primary" type="submit"> Отправить </button>
+              </form>
+            </div>
         </div>
       </div>
+    </div>
   </body>
 
+
   <script type="text/javascript">
-/*добавление */
+/*добавление открываем модалку4 */
   $( document ).ready(function() {
     $('#button_add').on('click', function() {
         $('.modal-wrapper').toggleClass('open');
         return false;
     });
-    $('.head').on('click', function (){
+    $('.head_X').on('click', function (){
         $('.modal-wrapper').removeClass('open');
     })   
   });
+  $("#telephone").mask("+7 (999) 999-99-99");
 
 
 /*обновление */

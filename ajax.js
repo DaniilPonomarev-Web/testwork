@@ -1,9 +1,15 @@
 $( document ).ready(function() {
+
     $("#btn_add_direction").click(
         function(e){
-            e.preventDefault();
-            del_direct(d, id);
-            return false; 
+            if ( ($('#fio').val() != 0) && ($('#who').val() != 0) && ($('#telephone').val() != 0)) {
+                add_direction('#form_add_direct', 'model/adddirect.php');
+                return false; 
+            }
+            else {
+                alert('Заполните все поля!');
+            }
+           
         }
     );
 });
@@ -18,11 +24,10 @@ function add_direction(form_add_direct, url) {
         success: function(response) { 
             console.log(response)
             result = $.parseJSON(response);
-            $('#table_body').append('<tr><td>'+result.fio+'</td>  <td>'+result.telephone+'</td> <td>'+result.who+'</td> <td>Редактировать</td> </tr>');
+            $('#table_body').append('<tr><td>'+result.fio+'</td>  <td>'+result.telephone+'</td> <td>'+result.who+'</td> <td>-</td> </tr>');
         },
         error: function(response) { 
             alert('ошибка добавления данных')
         }
     });
 }
-
