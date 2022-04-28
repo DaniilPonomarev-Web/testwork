@@ -109,8 +109,8 @@ require_once "model/GetDirect.php";
 
     if (clicks === 2) {
       $('#FIO_'+id).text($('#FIO_r_'+id).val());
-      $('#tel_'+id).text($('#FIO_r_'+id).val());
-      $("#who_"+id).text($('#FIO_r_'+id).val());
+      $('#tel_'+id).text($('#tel_r_'+id).val());
+      $("#who_"+id).text($('#who_r_'+id).val());
 
 
       $('#update_'+id).text("Редактировать");
@@ -122,8 +122,8 @@ require_once "model/GetDirect.php";
       $("#who_r_"+id).css('display', 'none');
       jQuery.ajax({
         type:"post",
-        url: "model/updateedirect.php",
-        data: { fio: "fio_"+id, telephone: "tel_"+id, who: "who_"+id },
+        url: "model/updatedirect.php",
+        data: { id: id,  fio: $('#FIO_r_'+id).val(), telephone: $('#tel_r_'+id).val(), who: $('#who_r_'+id).val() },
         success: function(response){
             
         },
